@@ -19,7 +19,6 @@ public class GuardWalk : MonoBehaviour
     int nextWp;
     bool WpReached;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(PatrolNow());
@@ -27,18 +26,10 @@ public class GuardWalk : MonoBehaviour
         WpReached = false;
         foreach (Transform wp in WayPointsParent.transform)
         {
-            //Debug.Log("Name of wp: " + wp.transform.gameObject.name);
             Wps.Add(wp.transform.gameObject);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (IsMoving)
@@ -58,7 +49,6 @@ public class GuardWalk : MonoBehaviour
         IsMoving = true;
     }
 
-    //Function for finding closest waypoint
     public int FindClosestPoint()
     {
         int closest = 0;
@@ -77,7 +67,6 @@ public class GuardWalk : MonoBehaviour
             }
             goidx++;
         }
-        Debug.Log("Closest point is: " + closest);
         return closest;
     }
 
