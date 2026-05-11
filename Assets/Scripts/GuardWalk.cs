@@ -5,19 +5,21 @@ using UnityEngine;
 public class GuardWalk : MonoBehaviour
 {
 
-    public float MovementSpeed = 1f;
-    public float TurningSpeed = 3f;
-    public Transform WayPointsParent;
-    public string WpTag = "WalkWp";
-    public bool isLoop = false;
+    [SerializeField] private float MovementSpeed = 1f;
+    [SerializeField] private float TurningSpeed = 3f;
+    [SerializeField] private Transform WayPointsParent;
+    [SerializeField] private LayerMask WpLayer;
+    [SerializeField] private LayerMask PlayerLayer;
+    [SerializeField] private bool isLoop = false;
 
+    private const string AWARE_FLAG = "IsAware";
+    private const string WARNING_FLAG = "IsWarning";
 
-
-
-    bool IsMoving;
-    List<GameObject> Wps = new List<GameObject>();
-    int nextWp;
-    bool WpReached;
+    private bool IsMoving;
+    private bool PlayerInArea = false;
+    private List<GameObject> Wps = new List<GameObject>();
+    private int nextWp;
+    private bool WpReached;
 
     void Start()
     {
@@ -72,7 +74,7 @@ public class GuardWalk : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == WpTag && !WpReached)
+        if (((WpLayer.value & (1 << other.gameObject.layer)) > 0) && !WpReached)
         {
 
             WpReached = true;
@@ -93,15 +95,52 @@ public class GuardWalk : MonoBehaviour
                 nextWp++;
             }
         }
+
+        if ((PlayerLayer.value & (1 << other.gameObject.layer)) > 0)
+        {
+            if (IsMoving)
+            {
+                Animator animator = GetComponent<Animator>();
+                animator.SetBool(AWARE_FLAG, true);
+                IsMoving = false;
+
+                StartCoroutine(WarningRoutine());
+            }
+
+            PlayerInArea = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.tag == WpTag && WpReached)
+        if (((WpLayer.value & (1 << other.gameObject.layer)) > 0) && WpReached)
         {
             WpReached = false;
         }
+
+        if ((PlayerLayer.value & (1 << other.gameObject.layer)) > 0)
+        {
+            PlayerInArea = false;
+        }
+    }
+
+    private IEnumerator WarningRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+
+        Animator animator = GetComponent<Animator>();
+
+        if (PlayerInArea)
+        {
+            animator.SetBool(WARNING_FLAG, true);
+        }
+        else
+        {
+            animator.SetBool(AWARE_FLAG, false);
+            IsMoving = true;
+        }
+
 
     }
 }

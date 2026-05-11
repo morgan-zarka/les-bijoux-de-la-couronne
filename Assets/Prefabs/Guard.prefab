@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9508
+  m_VersionIndex: 9532
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1247,7 +1247,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -2038,7 +2038,12 @@ MonoBehaviour:
   MovementSpeed: 1
   TurningSpeed: 3
   WayPointsParent: {fileID: 0}
-  WpTag: WalkWp
+  WpLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 128
   isLoop: 1
 --- !u!136 &2754574022143720274
 CapsuleCollider:
@@ -3185,7 +3190,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 0
-  m_Color: {r: 0.96753156, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_Intensity: 7.5
   m_Range: 2.25
   m_SpotAngle: 35.19464
