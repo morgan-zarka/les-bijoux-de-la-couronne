@@ -18,7 +18,7 @@ public class GuardWalk : MonoBehaviour
     private bool IsMoving;
     private bool PlayerInArea = false;
     private List<GameObject> Wps = new List<GameObject>();
-    private int nextWp;
+    private int nextWp = 0;
     private bool WpReached;
 
     void Start()
@@ -47,29 +47,8 @@ public class GuardWalk : MonoBehaviour
     IEnumerator PatrolNow()
     {
         yield return new WaitForSeconds(0.1f);
-        nextWp = FindClosestPoint();
+
         IsMoving = true;
-    }
-
-    public int FindClosestPoint()
-    {
-        int closest = 0;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        int goidx = 0;
-        foreach (Transform go in WayPointsParent.transform)
-        {
-            Vector3 diff = go.gameObject.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-
-            if (curDistance < distance)
-            {
-                closest = goidx;
-                distance = curDistance;
-            }
-            goidx++;
-        }
-        return closest;
     }
 
     private void OnTriggerEnter(Collider other)

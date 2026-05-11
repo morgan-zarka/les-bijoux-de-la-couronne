@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 665520136}
   - component: {fileID: 665520137}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Guard1Trajectory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1371,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3318874782617813496, guid: 3449db3e1eeaba44fab2737bff93b56a, type: 3}
       propertyPath: m_Name
-      value: Guard
+      value: Guard1
       objectReference: {fileID: 0}
     - target: {fileID: 4053858282583880557, guid: 3449db3e1eeaba44fab2737bff93b56a, type: 3}
       propertyPath: m_Mesh
