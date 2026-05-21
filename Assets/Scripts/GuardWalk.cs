@@ -6,7 +6,7 @@ public class GuardWalk : MonoBehaviour
 {
 
     [SerializeField] private float MovementSpeed = 1f;
-    [SerializeField] private float TurningSpeed = 10f;
+    [SerializeField] private float TurningSpeed = 5f;
     [SerializeField] private Transform WayPointsParent;
     [SerializeField] private LayerMask WpLayer;
     [SerializeField] private LayerMask PlayerLayer;
@@ -59,8 +59,13 @@ public class GuardWalk : MonoBehaviour
         {
             Vector3 lookPos = Wps[nextWp].transform.position - transform.position;
             lookPos.y = 0;
-            Quaternion rotation = Quaternion.LookRotation(lookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * TurningSpeed);
+
+            if (lookPos.sqrMagnitude > 0.01f)
+            {
+                Quaternion rotation = Quaternion.LookRotation(lookPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * TurningSpeed);
+            }
+
             transform.position += transform.forward * Time.deltaTime * MovementSpeed;
         }
     }

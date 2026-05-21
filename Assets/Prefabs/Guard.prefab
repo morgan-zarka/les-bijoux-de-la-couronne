@@ -949,7 +949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.StarterAssets::GuardWalk
   MovementSpeed: 1
-  TurningSpeed: 3
+  TurningSpeed: 5
   WayPointsParent: {fileID: 0}
   WpLayer:
     serializedVersion: 2
@@ -958,6 +958,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   isLoop: 1
+  delta: 0
 --- !u!136 &2754574022143720274
 CapsuleCollider:
   m_ObjectHideFlags: 0
