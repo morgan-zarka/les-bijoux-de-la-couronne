@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerCheckpoint : MonoBehaviour
 {
     [SerializeField] private Vector3 respawnPoint;
+    [SerializeField] private LayerMask CpLayer;
+
     private CharacterController characterController;
 
     void Start()
@@ -21,6 +23,14 @@ public class PlayerCheckpoint : MonoBehaviour
         characterController.enabled = false;
         transform.position = respawnPoint;
         characterController.enabled = true;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if ((CpLayer.value & (1 << other.gameObject.layer)) > 0)
+        {
+            respawnPoint = other.transform.position;
+        }
     }
 
     private void OnDestroy()
