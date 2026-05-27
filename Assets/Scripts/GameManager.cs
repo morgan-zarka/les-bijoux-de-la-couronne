@@ -1,8 +1,10 @@
 using StarterAssets;
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +14,21 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject transitionItem;
+    [SerializeField] private TextMeshProUGUI scoreField;
 
     private ThirdPersonController playerController;
     private StarterAssetsInputs playerInputs;
     private Animator animator;
+    private float score = 0;
+
+    public float Score { 
+        get => score; 
+        private set
+        {
+            score = value;
+            updateScore();
+        }
+    }
 
     private const string TRANSITION_FLAG = "transitionAsked";
 
@@ -38,13 +51,13 @@ public class GameManager : MonoBehaviour
         animator = transitionItem.GetComponent<Animator>();
     }
 
-    public void TriggerRespawn()
+    public void TriggerRespawn(bool ignoreScoreReset = false)
     {
-        StartCoroutine(RespawnRoutine());
+        StartCoroutine(RespawnRoutine(ignoreScoreReset));
     }
 
 
-    private IEnumerator RespawnRoutine()
+    private IEnumerator RespawnRoutine(bool ignoreScoreReset)
     {
         playerController.enabled = false;
         playerInputs.move = Vector2.zero;
@@ -56,7 +69,22 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.25f);
 
         OnRespawn?.Invoke();
+
+        if (!ignoreScoreReset)
+        {
+            this.Score /= 2;
+        }
         animator.SetBool(TRANSITION_FLAG, false);
         playerController.enabled = true;
+    }
+
+    public void scorePoints(int score)
+    {
+        this.Score += score;
+    }
+
+    private void updateScore()
+    {
+        scoreField.text = $"Score : {score:0.##}";
     }
 }
