@@ -9,9 +9,13 @@ public class GuardWalk : MonoBehaviour
     [SerializeField] private float TurningSpeed = 5f;
     [SerializeField] private Transform WayPointsParent;
     [SerializeField] private LayerMask WpLayer;
-    [SerializeField] private LayerMask PlayerLayer;
     [SerializeField] private bool isLoop = false;
     [SerializeField] private int delta = 0;
+
+    [SerializeField] private LayerMask PlayerLayer;
+    [SerializeField] private LayerMask ObstacleLayer;
+    [SerializeField] private float fov = 45f;
+    [SerializeField] private float viewDistance = 10f;
 
     private const string AWARE_FLAG = "IsAware";
     private const string WARNING_FLAG = "IsWarning";
@@ -32,6 +36,8 @@ public class GuardWalk : MonoBehaviour
 
         Respawn();
         StartCoroutine(PatrolNow());
+
+        StartCoroutine(FieldOfViewCheck());
 
         if (GameManager.Instance != null)
         {
@@ -77,6 +83,55 @@ public class GuardWalk : MonoBehaviour
         IsMoving = true;
     }
 
+    private IEnumerator FieldOfViewCheck()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+
+        while (true)
+        {
+            yield return wait;
+            DetectPlayer();
+        }
+    }
+
+    private void DetectPlayer()
+    {
+        bool isCurrentlySeeingPlayer = false;
+
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewDistance, PlayerLayer);
+
+        foreach (Collider target in targetsInViewRadius)
+        {
+            Vector3 dirToTarget = (target.transform.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, dirToTarget) < fov / 2f)
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+
+                if (!Physics.Raycast(transform.position, dirToTarget, distanceToTarget, ObstacleLayer))
+                {
+                    isCurrentlySeeingPlayer = true;
+                    break;
+                }
+            }
+        }
+
+        if (isCurrentlySeeingPlayer && !PlayerInArea)
+        {
+            PlayerInArea = true;
+            if (IsMoving)
+            {
+                animator.SetBool(AWARE_FLAG, true);
+                IsMoving = false;
+                StartCoroutine(WarningRoutine());
+            }
+        }
+        else if (!isCurrentlySeeingPlayer && PlayerInArea)
+        {
+            PlayerInArea = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (((WpLayer.value & (1 << other.gameObject.layer)) > 0))
@@ -100,27 +155,6 @@ public class GuardWalk : MonoBehaviour
                     nextWp++;
                 }
             }
-        }
-
-        if ((PlayerLayer.value & (1 << other.gameObject.layer)) > 0)
-        {
-            if (IsMoving)
-            {
-                animator.SetBool(AWARE_FLAG, true);
-                IsMoving = false;
-
-                StartCoroutine(WarningRoutine());
-            }
-
-            PlayerInArea = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if ((PlayerLayer.value & (1 << other.gameObject.layer)) > 0)
-        {
-            PlayerInArea = false;
         }
     }
 
