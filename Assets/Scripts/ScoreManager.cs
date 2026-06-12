@@ -12,6 +12,13 @@ public class ScoreManager : MonoBehaviour
         {
             GameManager.Instance.scorePoints(value);
             gameObject.SetActive(false);
+
+            GemMaterial gem = GetComponent<GemMaterial>();
+
+            if (gem != null && gem.IsEndTrigger())
+            {
+                // Todo
+            }
         }
     }
 }

@@ -74,11 +74,11 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: c3aa231b96983c94f8f39bca59ffb8e6, type: 2}
   - {fileID: 2100000, guid: a542cf3e063190e4b9668dc67e48c784, type: 2}
-  - {fileID: 2100000, guid: 58c861ba4aa62084aadeca3e0734e852, type: 2}
   - {fileID: 2100000, guid: b2ea9e62fd94611439ed6904e7388d38, type: 2}
   - {fileID: 2100000, guid: 78cf158905a8760479674306237b382f, type: 2}
   - {fileID: 2100000, guid: cbf93e648d0d4fd4faf93db0be2309a2, type: 2}
   - {fileID: 2100000, guid: 14a1e0463f6ba6c4c931ac546ec40756, type: 2}
+  - {fileID: 2100000, guid: 58c861ba4aa62084aadeca3e0734e852, type: 2}
 --- !u!114 &1859544727467385667
 MonoBehaviour:
   m_ObjectHideFlags: 0
