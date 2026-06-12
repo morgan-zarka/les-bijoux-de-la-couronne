@@ -10,30 +10,15 @@ public class ScoreManager : MonoBehaviour
     {
         if ((PlayerLayer.value & (1 << other.gameObject.layer)) > 0)
         {
-            GameManager.Instance.scorePoints(value);
+            GameManager.Instance.ScorePoints(value);
             gameObject.SetActive(false);
 
             GemMaterial gem = GetComponent<GemMaterial>();
 
             if (gem != null && gem.IsEndTrigger())
             {
-                // Todo
+                GameManager.Instance.FinishGame();
             }
         }
     }
-
-    public void SetInt(string keyName, int value)
-    {
-        PlayerPrefs.SetInt(keyName, value);
-    }
-
-    public int GetInt(string keyName)
-    {
-        return PlayerPrefs.GetInt(keyName);
-    }
-
-    public void Save(){
-        PlayerPrefs.Save();
-    }
-
 }
