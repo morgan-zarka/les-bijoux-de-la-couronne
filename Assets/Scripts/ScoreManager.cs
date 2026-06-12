@@ -21,4 +21,19 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
+
+    public void SetInt(string keyName, int value)
+    {
+        PlayerPrefs.SetInt(keyName, value);
+    }
+
+    public int GetInt(string keyName)
+    {
+        return PlayerPrefs.GetInt(keyName);
+    }
+
+    public void Save(){
+        PlayerPrefs.Save();
+    }
+
 }

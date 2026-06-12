@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
     public void ChangeScene(string _sceneName)
     {
         SceneManager.LoadScene(_sceneName);
-    }
+    }    
 
     public void Quit()
     {
