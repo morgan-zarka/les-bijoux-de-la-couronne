@@ -5829,7 +5829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525ac4b927c874049ad1aec72c00565e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  player: {fileID: 0}
+  player: {fileID: 1863770556}
   transitionItem: {fileID: 1804691197}
   scoreField: {fileID: 1839123393}
 --- !u!4 &1315527003
@@ -6474,7 +6474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1009878951060891469, guid: c08a65dde46cc3643b1175fbac07a95f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.08776
+      value: 21.69
       objectReference: {fileID: 0}
     - target: {fileID: 1009878951060891469, guid: c08a65dde46cc3643b1175fbac07a95f, type: 3}
       propertyPath: m_LocalRotation.w

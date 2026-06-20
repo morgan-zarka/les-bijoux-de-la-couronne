@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private ThirdPersonController playerController;
     private StarterAssetsInputs playerInputs;
+    private Animator playerAnimator;
     private Animator animator;
     private float score = 0;
     private bool newBestScore = false;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
             Instance.scoreField = this.scoreField;
 
             Instance.InitializeScene();
+            Instance.UpdateScore();
 
             Destroy(gameObject);
             return;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         {
             playerController = player.GetComponent<ThirdPersonController>();
             playerInputs = player.GetComponent<StarterAssetsInputs>();
+            playerAnimator = player.GetComponent<Animator>();
         }
 
         if(transitionItem != null)
@@ -84,6 +87,8 @@ public class GameManager : MonoBehaviour
     {
         playerController.enabled = false;
         playerInputs.move = Vector2.zero;
+        playerAnimator.SetFloat("Speed", 0f);
+        playerAnimator.SetFloat("MotionSpeed", 0f);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -126,5 +131,10 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public bool isBestScore()
+    {
+        return this.newBestScore;
     }
 }
