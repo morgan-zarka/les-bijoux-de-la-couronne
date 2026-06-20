@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,15 +19,17 @@ public class GameManager : MonoBehaviour
 
     private ThirdPersonController playerController;
     private StarterAssetsInputs playerInputs;
+    private Animator playerAnimator;
     private Animator animator;
     private float score = 0;
+    private bool newBestScore = false;
 
     public float Score { 
         get => score; 
         private set
         {
             score = value;
-            updateScore();
+            UpdateScore();
         }
     }
 
@@ -34,21 +37,44 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-        }
-        else
-        {
+            Instance.player = this.player;
+            Instance.transitionItem = this.transitionItem;
+            Instance.scoreField = this.scoreField;
+
+            Instance.InitializeScene();
+            Instance.UpdateScore();
+
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        playerController = player.GetComponent<ThirdPersonController>();
-        playerInputs = player.GetComponent<StarterAssetsInputs>();
-        animator = transitionItem.GetComponent<Animator>();
+        if (Instance == this)
+        {
+            InitializeScene();
+        }
+    }
+
+    private void InitializeScene()
+    {
+        if (player != null)
+        {
+            playerController = player.GetComponent<ThirdPersonController>();
+            playerInputs = player.GetComponent<StarterAssetsInputs>();
+            playerAnimator = player.GetComponent<Animator>();
+        }
+
+        if(transitionItem != null)
+        {
+            animator = transitionItem.GetComponent<Animator>();
+        }
     }
 
     public void TriggerRespawn(bool ignoreScoreReset = false)
@@ -61,6 +87,8 @@ public class GameManager : MonoBehaviour
     {
         playerController.enabled = false;
         playerInputs.move = Vector2.zero;
+        playerAnimator.SetFloat("Speed", 0f);
+        playerAnimator.SetFloat("MotionSpeed", 0f);
 
         yield return new WaitForSeconds(1.5f);
 
@@ -78,13 +106,35 @@ public class GameManager : MonoBehaviour
         playerController.enabled = true;
     }
 
-    public void scorePoints(int score)
+    public void ScorePoints(int score)
     {
         this.Score += score;
     }
 
-    private void updateScore()
+    private void UpdateScore()
     {
         scoreField.text = $"Score : {score:0.##}";
+    }
+
+    public float GetBestScore()
+    {
+        return PlayerPrefs.GetFloat("Best score", 0);
+    }
+
+    public void ChangeScene(string sceneName)
+    {
+        if(sceneName == "MenuFinDeJeu" && score > PlayerPrefs.GetFloat("Best score", 0))
+        {
+            PlayerPrefs.SetFloat("Best score", score);
+            PlayerPrefs.Save();
+            newBestScore = true;
+        }
+
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public bool isBestScore()
+    {
+        return this.newBestScore;
     }
 }

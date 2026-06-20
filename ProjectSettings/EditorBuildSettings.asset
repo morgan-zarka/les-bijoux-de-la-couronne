@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
-    path: Assets/Scenes/Damier.unity
-    guid: 4721a0a49969b37438e453e2383cd9de
-  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 0d4753f49ff7c443697f3172bbc18371
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 348b9218cdef5420e8cfe95ed7439200
+  - enabled: 1
+    path: Assets/Scenes/Level Final.unity
+    guid: 97435f3350597504892c8a68d1379146
+  - enabled: 1
+    path: Assets/Scenes/MenuFinDeJeu.unity
+    guid: 573c982880b0a8b4e8183155c1b5952d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -16,6 +16,7 @@ public class GuardWalk : MonoBehaviour
     [SerializeField] private LayerMask ObstacleLayer;
     [SerializeField] private float fov = 45f;
     [SerializeField] private float viewDistance = 10f;
+    [SerializeField] private float warningTime = 2f;
 
     private const string AWARE_FLAG = "IsAware";
     private const string WARNING_FLAG = "IsWarning";
@@ -47,11 +48,11 @@ public class GuardWalk : MonoBehaviour
 
     void Respawn()
     {
-        transform.position = Wps[delta].transform.position;
+        transform.position = Wps[delta%Wps.Count].transform.position;
         IsMoving = true;
         animator.SetBool(AWARE_FLAG, false);
         animator.SetBool(WARNING_FLAG, false);
-        nextWp = delta + 1;
+        nextWp = (delta + 1)% Wps.Count;
 
         Vector3 lookPos = Wps[nextWp].transform.position - transform.position;
         lookPos.y = 0;
@@ -160,7 +161,7 @@ public class GuardWalk : MonoBehaviour
 
     private IEnumerator WarningRoutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(warningTime);
 
         if (PlayerInArea)
         {

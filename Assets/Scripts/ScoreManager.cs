@@ -10,8 +10,15 @@ public class ScoreManager : MonoBehaviour
     {
         if ((PlayerLayer.value & (1 << other.gameObject.layer)) > 0)
         {
-            GameManager.Instance.scorePoints(value);
+            GameManager.Instance.ScorePoints(value);
             gameObject.SetActive(false);
+
+            GemMaterial gem = GetComponent<GemMaterial>();
+
+            if (gem != null && gem.IsEndTrigger().Item1)
+            {
+                GameManager.Instance.ChangeScene(gem.IsEndTrigger().Item2);
+            }
         }
     }
 }
