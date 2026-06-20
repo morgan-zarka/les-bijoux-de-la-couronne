@@ -15,9 +15,9 @@ public class ScoreManager : MonoBehaviour
 
             GemMaterial gem = GetComponent<GemMaterial>();
 
-            if (gem != null && gem.IsEndTrigger())
+            if (gem != null && gem.IsEndTrigger().Item1)
             {
-                GameManager.Instance.FinishGame();
+                GameManager.Instance.ChangeScene(gem.IsEndTrigger().Item2);
             }
         }
     }

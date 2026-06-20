@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 
@@ -5,6 +6,7 @@ public class GemMaterial : MonoBehaviour
 {
     [SerializeField] private Material[] materials;
     [SerializeField] private bool isEndTrigger;
+    [SerializeField] private string nextSceneName;
 
     void Start()
     {
@@ -31,8 +33,8 @@ public class GemMaterial : MonoBehaviour
         }
     }
 
-    public bool IsEndTrigger()
+    public (bool, string) IsEndTrigger()
     {
-        return isEndTrigger;
+        return (isEndTrigger, nextSceneName);
     }
 }

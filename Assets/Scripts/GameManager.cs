@@ -116,15 +116,15 @@ public class GameManager : MonoBehaviour
         return PlayerPrefs.GetFloat("Best score", 0);
     }
 
-    public void FinishGame()
+    public void ChangeScene(string sceneName)
     {
-        if(score > PlayerPrefs.GetFloat("Best score", 0))
+        if(sceneName == "MenuFinDeJeu" && score > PlayerPrefs.GetFloat("Best score", 0))
         {
             PlayerPrefs.SetFloat("Best score", score);
             PlayerPrefs.Save();
             newBestScore = true;
         }
 
-        SceneManager.LoadScene("MenuFinDeJeu");
+        SceneManager.LoadScene(sceneName);
     }
 }
