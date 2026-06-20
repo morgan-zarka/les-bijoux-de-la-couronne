@@ -1,5 +1,6 @@
 using GLTFast.Schema;
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
@@ -9,6 +10,7 @@ public class Crown : MonoBehaviour
     [SerializeField] private LayerMask PlayerLayer;
     private bool isTrueOne = false;
     private bool tried = false;
+    private Animator animator;
 
     public void setAsTrue()
     {
@@ -21,6 +23,8 @@ public class Crown : MonoBehaviour
         {
             GameManager.Instance.OnRespawn += Respawn;
         }
+
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +38,7 @@ public class Crown : MonoBehaviour
             } else
             {
                 tried = true;
+                animator.SetBool("Alarm", true);
                 GameManager.Instance.TriggerRespawn();
             }
         }
