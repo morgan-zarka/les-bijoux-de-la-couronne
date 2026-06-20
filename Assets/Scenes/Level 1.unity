@@ -1953,7 +1953,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1764202837695429827, guid: 37bf40d4f5982fc4597b74f648a0afa1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.2
+      value: -9.6
       objectReference: {fileID: 0}
     - target: {fileID: 1764202837695429827, guid: 37bf40d4f5982fc4597b74f648a0afa1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1997,7 +1997,7 @@ PrefabInstance:
       objectReference: {fileID: 1735087914}
     - target: {fileID: 7027232581614263910, guid: 37bf40d4f5982fc4597b74f648a0afa1, type: 3}
       propertyPath: m_Size.x
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 7027232581614263910, guid: 37bf40d4f5982fc4597b74f648a0afa1, type: 3}
       propertyPath: m_Size.z
@@ -3530,7 +3530,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1764202837695429827, guid: 37bf40d4f5982fc4597b74f648a0afa1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.4
+      value: 15.3
       objectReference: {fileID: 0}
     - target: {fileID: 1764202837695429827, guid: 37bf40d4f5982fc4597b74f648a0afa1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5260,6 +5260,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 804216045}
     m_Modifications:
+    - target: {fileID: 1859544727467385667, guid: 867fd81345b531f4db263d26a6f1866e, type: 3}
+      propertyPath: value
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 4438841095373327878, guid: 867fd81345b531f4db263d26a6f1866e, type: 3}
       propertyPath: m_Name
       value: Gem (6)
@@ -5317,6 +5321,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 804216045}
     m_Modifications:
+    - target: {fileID: 1859544727467385667, guid: 867fd81345b531f4db263d26a6f1866e, type: 3}
+      propertyPath: value
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 4438841095373327878, guid: 867fd81345b531f4db263d26a6f1866e, type: 3}
       propertyPath: m_Name
       value: Gem (5)
