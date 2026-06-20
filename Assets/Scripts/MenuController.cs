@@ -14,4 +14,14 @@ public class MenuController : MonoBehaviour
         Application.Quit();
     }
 
+    public void HardRestartGame()
+    {
+        if (GameManager.Instance != null)
+        {
+            Destroy(GameManager.Instance.gameObject);
+        }
+
+        SceneManager.LoadScene("Level 1");
+    }
+
 }
