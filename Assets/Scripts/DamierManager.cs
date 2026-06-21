@@ -1,4 +1,3 @@
-using StarterAssets;
 using System.Collections;
 using UnityEngine;
 using TMPro;
