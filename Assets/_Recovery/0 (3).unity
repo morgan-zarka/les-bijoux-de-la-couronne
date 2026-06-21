@@ -346,8 +346,8 @@ MonoBehaviour:
   tailleCase: 2
   casePrefab: {fileID: 192913119094598926, guid: b9788eac415b95b4486faa12b7d4fabf, type: 3}
   pointDepart: {x: -4, y: 0.05, z: -4}
-  materialClair: {fileID: 2100000, guid: 2f10d3774d9089a41be32e7c82183758, type: 2}
-  materialFonce: {fileID: 2100000, guid: 3fc3af24ddd429045a5f890825fdee86, type: 2}
+  materialClair: {fileID: 2100000, guid: 3fc3af24ddd429045a5f890825fdee86, type: 2}
+  materialFonce: {fileID: 2100000, guid: 13ae652841041da47bd2c359abb3f9c4, type: 2}
 --- !u!4 &105913554
 Transform:
   m_ObjectHideFlags: 0
