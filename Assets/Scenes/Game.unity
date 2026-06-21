@@ -2355,6 +2355,10 @@ PrefabInstance:
       propertyPath: isEndTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 602440720418629105, guid: 867fd81345b531f4db263d26a6f1866e, type: 3}
+      propertyPath: nextSceneName
+      value: Level 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1859544727467385667, guid: 867fd81345b531f4db263d26a6f1866e, type: 3}
       propertyPath: value
       value: 100
