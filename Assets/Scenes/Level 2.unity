@@ -4899,6 +4899,7 @@ MonoBehaviour:
   panneauEchec: {fileID: 2126554475}
   texteEssais: {fileID: 158357562}
   gemmeSortie: {fileID: 391942777}
+  totalCasesChemin: 28
 --- !u!4 &913980265
 Transform:
   m_ObjectHideFlags: 0
