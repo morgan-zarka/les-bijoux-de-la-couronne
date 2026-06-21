@@ -99,7 +99,7 @@ public class DamierManager : MonoBehaviour
     {
         if (panneauNotification != null && !panneauNotification.activeSelf)
         {
-            texteNotification.text = "Examinez d'abord le tableau !";
+            texteNotification.text = "Examinez d'abord la carte ! Allez vers la vitrine ";
             panneauNotification.SetActive(true);
             StartCoroutine(CacherMessage());
         }
