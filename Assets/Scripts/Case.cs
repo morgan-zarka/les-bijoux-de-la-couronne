@@ -53,6 +53,12 @@ public class Case : MonoBehaviour
             GameObject gemmeInstance = Instantiate(gemmePrefab, transform);
             gemmeInstance.transform.position = transform.position + Vector3.up * 0.1f;
 
+            Collider gemmeCollider = gemmeInstance.GetComponent<Collider>();
+            if (gemmeCollider != null)
+            {
+                gemmeCollider.enabled = false;
+            }
+
             Animator anim = gemmeInstance.GetComponent<Animator>();
             if (anim != null) anim.enabled = false;
 

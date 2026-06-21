@@ -1,7 +1,7 @@
-using System.Collections;
-using UnityEngine;
-using TMPro;
 using StarterAssets;
+using System.Collections;
+using TMPro;
+using UnityEngine;
 
 public class CarteAffichage : MonoBehaviour
 {
@@ -29,7 +29,16 @@ public class CarteAffichage : MonoBehaviour
     {
         GameObject joueur = GameObject.FindWithTag("Player");
         ThirdPersonController ctrl = joueur?.GetComponent<ThirdPersonController>();
+        StarterAssetsInputs playerInputs = joueur.GetComponent<StarterAssetsInputs>();
+        Animator playerAnimator = joueur.GetComponent<Animator>();
+
         if (ctrl != null) ctrl.enabled = false;
+        if (playerInputs != null) playerInputs.move = Vector2.zero;
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetFloat("Speed", 0f);
+            playerAnimator.SetFloat("MotionSpeed", 0f);
+        }
 
         if (tempsRestant <= 0)
         {
