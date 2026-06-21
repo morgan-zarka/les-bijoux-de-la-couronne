@@ -4,7 +4,7 @@ using UnityEngine;
 public class CheminCorrect : MonoBehaviour
 {
     // Liste des coordonnées (x, z) qui sont SÛRES
-    // Le reste du damier (8x8) est piégé
+    // Le damier fait maintenant 8 (largeur) x 16 (profondeur)
     public List<Vector2Int> casesSures = new List<Vector2Int>
     {
         new Vector2Int(0, 0),
@@ -21,7 +21,20 @@ public class CheminCorrect : MonoBehaviour
         new Vector2Int(5, 6),
         new Vector2Int(5, 7),
         new Vector2Int(6, 7),
-        new Vector2Int(7, 7),
+        new Vector2Int(6, 8),
+        new Vector2Int(6, 9),
+        new Vector2Int(5, 9),
+        new Vector2Int(5, 10),
+        new Vector2Int(4, 10),
+        new Vector2Int(4, 11),
+        new Vector2Int(3, 11),
+        new Vector2Int(3, 12),
+        new Vector2Int(2, 12),
+        new Vector2Int(2, 13),
+        new Vector2Int(1, 13),
+        new Vector2Int(1, 14),
+        new Vector2Int(0, 14),
+        new Vector2Int(0, 15),
     };
 
     // Vérifie si une case donnée fait partie du chemin sûr

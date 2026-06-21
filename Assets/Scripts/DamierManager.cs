@@ -25,6 +25,9 @@ public class DamierManager : MonoBehaviour
     private int nombreTentatives = 0;
     private bool enAttenteRecommencer = false;
 
+    [Header("Sortie")]
+    public GameObject gemmeSortie;
+
     void Start()
     {
         if (texteEssais != null)
@@ -114,5 +117,11 @@ public class DamierManager : MonoBehaviour
     public void RecommencerSalle()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    public void DamierComplete()
+    {
+        if (gemmeSortie != null)
+            gemmeSortie.SetActive(true);
     }
 }

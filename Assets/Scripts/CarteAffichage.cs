@@ -9,12 +9,14 @@ public class CarteAffichage : MonoBehaviour
     public GameObject panneauCarte;
     public TextMeshProUGUI texteCompteur;
     public DamierManager damierManager;
+    public GameObject fondSombre;
 
     private float tempsRestant;
 
     private void Start()
     {
         panneauCarte.SetActive(false);
+        if (fondSombre != null) fondSombre.SetActive(false);
     }
 
     public void AfficherCarte()
@@ -39,6 +41,7 @@ public class CarteAffichage : MonoBehaviour
             yield break;
         }
 
+        if (fondSombre != null) fondSombre.SetActive(true);
         panneauCarte.SetActive(true);
 
         while (tempsRestant > 0)
@@ -50,6 +53,7 @@ public class CarteAffichage : MonoBehaviour
         }
 
         panneauCarte.SetActive(false);
+        if (fondSombre != null) fondSombre.SetActive(false);
         damierManager.CarteVue();
 
         if (ctrl != null) ctrl.enabled = true;
