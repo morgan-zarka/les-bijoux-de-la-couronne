@@ -55,6 +55,11 @@ public class Case : MonoBehaviour
 
             Animator anim = gemmeInstance.GetComponent<Animator>();
             if (anim != null) anim.enabled = false;
+
+            ScoreManager scoreManagerGemme = gemmeInstance.GetComponent<ScoreManager>();
+            if (scoreManagerGemme != null) scoreManagerGemme.enabled = false;
+
+            damierManager.SignalerBonneCase();
         }
     }
 

@@ -27,6 +27,8 @@ public class DamierManager : MonoBehaviour
 
     [Header("Sortie")]
     public GameObject gemmeSortie;
+    public int totalCasesChemin = 28;
+    private int bonnesCasesTraversees = 0;
 
     void Start()
     {
@@ -83,6 +85,11 @@ public class DamierManager : MonoBehaviour
         }
     }
 
+    public void SignalerBonneCase()
+    {
+        bonnesCasesTraversees++;
+    }
+
     public bool EstDebloque()
     {
         return carteVue;
@@ -121,7 +128,14 @@ public class DamierManager : MonoBehaviour
 
     public void DamierComplete()
     {
-        if (gemmeSortie != null)
-            gemmeSortie.SetActive(true);
+        if (bonnesCasesTraversees >= totalCasesChemin)
+        {
+            if (gemmeSortie != null)
+                gemmeSortie.SetActive(true);
+        }
+        else
+        {
+            AfficherMessageBloque();
+        }
     }
 }
